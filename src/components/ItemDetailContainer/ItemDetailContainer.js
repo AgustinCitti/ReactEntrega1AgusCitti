@@ -25,18 +25,20 @@
 //         <ItemDetail item={item}/>
 //     );
 // }
-
+import logo from '../../logo.svg';
 import data from '../ItemListContainer/mock-data';
 import {useState, useEffect} from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-
+import { useParams } from 'react-router-dom';
+import ItemList from '../ItemList/ItemList';
 const ItemDetailContainer =({ greeting }) =>{
     const [items, setItems] = useState ([]);
-
+    const {detalleID} = useParams();
     const getData = new Promise((resolve, reject) => {
         setTimeout(() =>{
             resolve(data);
         }, 2000);
+        getData.then(res => setItems(res.find(ItemList.id === parseInt(detalleID))));
     });
 
 
@@ -46,9 +48,18 @@ const ItemDetailContainer =({ greeting }) =>{
             console.log(result);
         })
     }, []);
-    return(
-        <ItemDetail itemsList={items}/>
-      );
+    return (
+        <>
+        { items.length > 0 ?(
+            <ItemDetail itemsList={items}/>
+            
+        ) : (
+            <img src={logo} className="App-logo" alt="logo" />
+            )
+            
+        }
+            
+            </>);
 };
 
 

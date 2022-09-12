@@ -1,5 +1,5 @@
 import Item from "../Item/Item";
-
+import { NavLink } from 'react-router-dom';
 const ItemList=({itemsList}) =>{
     return (
         <>
@@ -9,7 +9,6 @@ const ItemList=({itemsList}) =>{
                 <Item
                  key={producto.id}
                  name={producto.name}
-         
                  price={producto.price}
                  image={producto.image}
                 />

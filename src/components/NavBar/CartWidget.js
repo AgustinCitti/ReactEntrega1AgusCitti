@@ -1,4 +1,4 @@
-import react from 'react';
+
 import iconoCaja from './iconoCaja.svg';
 import './carritoStyle.css';
 const imagen = () => {
