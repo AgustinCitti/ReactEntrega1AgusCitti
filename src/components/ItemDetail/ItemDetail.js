@@ -17,15 +17,25 @@
         
 // }
 import Item from "../Item/Item";
-
-
+import ItemCount from "../ItemCount/ItemCount.jsx"
+import {useState} from "react";
 
 const ItemDetail=({items}) =>{
+    
+    const [compra,setCompra]= useState(0);
+    
+    
+    const onAdd =(quantity) =>{
+        setCompra(quantity);
+        console.log(`Compraste ${quantity} unidades`);
+    };
   return (
     <div>
         <h1>{items.name }</h1>
         <img height="500px" src={items.image} alt={items.name}></img>
         <p>{items.description}</p>
+        <p>Pedido:{compra}</p>
+        <ItemCount initial={0} stock={24} onAdd={onAdd}></ItemCount>
     </div>
 
 
