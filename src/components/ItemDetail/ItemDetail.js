@@ -20,22 +20,35 @@ import Item from "../Item/Item";
 
 
 
-const ItemDetail=({itemsList}) =>{
+const ItemDetail=({items}) =>{
   return (
-      <>
-      {
-      itemsList.map((producto)=>{
-          return(
-              <Item
-               key={producto.id}
-               name={producto.name}
-               description={producto.description} 
-               price={producto.price}
-               image={producto.image}
-              />
-          );
-      })}
-      </> 
+    <div>
+        <h1>{items.name }</h1>
+        <img height="500px" src={items.image} alt={items.name}></img>
+        <p>{items.description}</p>
+    </div>
+
+
+
+
+
+
+
+
+    //   <>
+    //   {
+    //   itemsList.map((producto)=>{
+    //       return(
+    //           <Item
+    //            key={producto.id}
+    //            name={producto.name}
+    //            description={producto.description} 
+    //            price={producto.price}
+    //            image={producto.image}
+    //           />
+    //       );
+    //   })}
+    //   </> 
       )
   };
   

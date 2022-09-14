@@ -1,13 +1,13 @@
 import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer";
 import { Link } from 'react-router-dom';
-const Item =({id,name,description,price,image,stock})=>{
+const Item =({producto})=>{
     return (
         <div className="item">
-            <img src={image} alt={name} height="300px"/>
-            <h1>{name}</h1>
-            <p>{description}</p>
-            <p>{price}</p>
-            <button ><Link to={`/detalle/${id}`} >Ver detalle</Link></button>
+            <img src={producto.image} alt={producto.name} height="300px"/>
+            <h1>{producto.name}</h1>
+            <p>{producto.description}</p>
+            <p>{producto.price}</p>
+            <Link to={`/detalle/${producto.id}`} ><button >Ver detalle</button></Link>
         </div>     
             
     );
