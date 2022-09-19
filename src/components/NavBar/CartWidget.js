@@ -1,10 +1,15 @@
 
 import iconoCaja from './iconoCaja.svg';
 import './carritoStyle.css';
-const imagen = () => {
+import {Link} from 'react-router-dom';
+const CartWidget = () => {
     return(
-        <div className="carrito1"><img height={'55px'} width={'55px'}  src={iconoCaja}></img></div>
+        <div className="carrito1">
+            <Link to="/cart">
+            <img height={'55px'} width={'55px'}  src={iconoCaja}></img>
+            </Link>
+            </div>
     );
 };
 
-export default imagen;
+export default CartWidget;

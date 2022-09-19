@@ -18,16 +18,18 @@
 // }
 import Item from "../Item/Item";
 import ItemCount from "../ItemCount/ItemCount.jsx"
-import {useState} from "react";
+import {useState, useContext} from "react";
+import {CartContext} from "../../context/CartContext";
 
 const ItemDetail=({items}) =>{
-    
+    const {addItem} = useContext(CartContext);
     const [compra,setCompra]= useState(0);
     
     
     const onAdd =(quantity) =>{
         setCompra(quantity);
         console.log(`Compraste ${quantity} unidades`);
+        addItem(items, quantity);
     };
   return (
     <div>
