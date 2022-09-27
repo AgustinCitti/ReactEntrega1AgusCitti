@@ -14,6 +14,7 @@ import {doc, getDoc, collection, getDocs, query, where, limit, getFirestore} fro
     const [productos, setProductos] = useState([]);
     
     useEffect(()=>{
+        if(!categoryId){
         const queryRef = collection(db, "Items");
         getDocs(queryRef).then(response=>{
             const resultados = response.docs.map(doc=>{
@@ -26,7 +27,21 @@ import {doc, getDoc, collection, getDocs, query, where, limit, getFirestore} fro
             console.log(resultados)
             setProductos(resultados);
         })
-    },[categoryId])
+    } else{
+        const queryRef = query(collection(db,"Items"),where("category","==",categoryId));
+        getDocs(queryRef).then(response=>{
+            const resultados = response.docs.map(doc=>{
+                const newItem ={
+                    id:doc.id,
+                    ...doc.data(),
+                }
+                return newItem;
+            });
+            console.log(resultados)
+            setProductos(resultados);
+        })
+    }
+},[categoryId])
 
     return(
         <div>

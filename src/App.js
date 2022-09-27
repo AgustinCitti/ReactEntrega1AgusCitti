@@ -21,7 +21,7 @@ function App() {
       <header className="App-header">
       <Routes>
         <Route path='/' element={<ItemListContainer/>} />
-        <Route path='/categoria' element={<ItemListContainer/>} />
+        <Route path='/category/:categoryId' element={<ItemListContainer/>} />
         <Route path='/Nosotros' element={<Nosotros/>} />
         <Route path='/detalle/:detalleID' element={<ItemDetailContainer/>} />
         <Route path='/cart' element={<CartContainer/>}/>
