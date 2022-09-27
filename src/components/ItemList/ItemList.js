@@ -1,23 +1,20 @@
 import Item from "../Item/Item";
 import { NavLink } from 'react-router-dom';
-const ItemList=({itemsList}) =>{
-    return (
-        <>
-        {
-        itemsList.map((producto)=>{
-            return(
-                <Item
-                producto={producto}
-                 key={producto.id}
-                 name={producto.name}
-                 price={producto.price}
-                 image={producto.image}
-                />
-            );
-        })}
-        </> 
-        )
-    };
+export const ItemList = ({items})=>{
+
+    return(
+        <div>
+            <div style={{width:"100%"}}>item list</div>
+            {
+                items.map(producto=>(
+                    <Item key={producto.id} item={producto}/>
+                ))
+            }
+        </div>
+    )
+}
+
+
     
 
 export default ItemList

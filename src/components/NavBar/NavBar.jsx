@@ -10,7 +10,8 @@ const NavBar=() => {
     <div >
         <ul className="listaNavBar">
              <li role="presentation" ><NavLink className="NavBarItemBrand" to='/' >CASTELO <img width={'30px'} src={logo2}/></NavLink></li>
-            <li role="presentation" ><NavLink className="NavBarItem" to='/categoria' >Productos</NavLink></li>
+            <li role="presentation" ><NavLink className="NavBarItem" to='/category/cervezaLiviana' >Cervezas Livianas</NavLink></li>
+            <li role="presentation" ><NavLink className="NavBarItem" to='/category/cervezaFuerte' >Cervezas Fuertes</NavLink></li>
              <li role="presentation" ><NavLink className="NavBarItem" to='/Nosotros' >Nosotros</NavLink></li>
              
         </ul>
