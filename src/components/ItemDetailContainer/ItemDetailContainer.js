@@ -47,12 +47,12 @@
 
 
 import logo from '../../logo.svg';
-import data from '../ItemListContainer/mock-data';
+import {db} from '../../utils/firebase'
 import {useState, useEffect} from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from 'react-router-dom';
 import ItemList from '../ItemList/ItemList';
-
+import {doc, getDoc} from "firebase/firestore";
 
 
 const ItemDetailContainer =({ greeting }) =>{
@@ -62,60 +62,43 @@ const ItemDetailContainer =({ greeting }) =>{
     const {detalleID} = useParams();
 
 
-    const getData =(id)=>{
-    return new Promise((resolve, reject) => {
+    // const getData =(id)=>{
+    // return new Promise((resolve, reject) => {
        
-        setTimeout(() =>{
-            const producto = data.find(item=>item.id === parseInt(detalleID));
-            resolve(producto);
-            console.log(producto);
-        }, 2000);
+    //     setTimeout(() =>{
+    //         const producto = data.find(item=>item.id === parseInt(detalleID));
+    //         resolve(producto);
+    //         console.log(producto);
+    //     }, 2000);
         
         
-    })};
-    // getData.then(res => setItems(res.find(ItemList.id === parseInt(detalleID))));
-
+    // })};
+   
     useEffect(()=>{
         const getProducto = async() =>{
-            const producto = await getData();
-            setItems(producto)
-
+         const queryRef = doc(db, "Items",detalleID);
+        const response = await getDoc(queryRef);
+       
+       const newItem ={
+        id: response.id,
+        ...response.data(),
+       }
+       console.log(newItem);
+       setItems(newItem)
         }
         getProducto();
     },[detalleID])
 
 
-    // useEffect(() =>{
-        
-    //     getData((result) => {
-    //         setItems(result);
-    //         console.log(result);
-            
-    //     })
-    // }, []);
-
+   
 
     return(
         <div>
             <ItemDetail items={items}></ItemDetail>
         </div>
     );
-    // return (
-    //     <>
-    //     { items.length > 0 ?(
-    //         <ItemDetail itemsList={items}/>
-            
-    //     ) : (
-    //         <img src={logo} className="App-logo" alt="logo" />
-    //         )
-            
-    //     }
-            
-    //         </>);
+   
 };
-
-
-
 
 
 
