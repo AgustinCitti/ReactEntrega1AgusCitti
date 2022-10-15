@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-
+import {addDoc, collection, getFirestore} from 'firebase/firestore'
 export const CartContainer= () => {
     const {productCartList, removeItem, getTotalPrice, clear} = useContext(CartContext);
 
@@ -12,9 +12,14 @@ export const CartContainer= () => {
                 Items: productCartList, 
                 total:getTotalPrice()
             };
-            console.log("order", order)
+            console.log("order", order);
 
-
+            const handleClick =()=>{
+                const db=getFirestore();
+                const ordersCollection =collection(db, 'orders');
+                addDoc(ordersCollection, order)
+                .then(({id})=> console.log(id))
+            }
 
     return(
         <div>
@@ -30,6 +35,7 @@ export const CartContainer= () => {
             </div>
             <button onClick={clear}>Vaciar el carrito</button>
               <p>Precio total: {getTotalPrice()}</p>
+              <button onClick={handleClick}>Finalizar compra</button>
         </div>
     )
 }
