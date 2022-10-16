@@ -8,9 +8,9 @@ export const CartContainer= () => {
             buyer: {
                  names:"Tobi",
                  phone:"12345678",
-                 email:"tobimartinez@gmail.com" }, 
+                 email:"tobimartinez@gmail.com" , 
                 Items: productCartList, 
-                total:getTotalPrice()
+                total: getTotalPrice()}
             };
             console.log("order", order);
 
@@ -18,7 +18,9 @@ export const CartContainer= () => {
                 const db=getFirestore();
                 const ordersCollection =collection(db, 'orders');
                 addDoc(ordersCollection, order)
-                .then(({id})=> console.log(id))
+                .then(({id})=> console.log(id));
+                clear();
+                console.log("orden enviada");
             }
 
     return(
